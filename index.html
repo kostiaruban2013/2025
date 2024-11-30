@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отсчет до Нового Года 2025</title>
+    <style>
+        /* Анимация фона с плавным изменением цветов */
+        @keyframes gradientAnimation {
+            0% {
+                background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            }
+            25% {
+                background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+            }
+            50% {
+                background: linear-gradient(45deg, #ffb347, #ffcc33);
+            }
+            75% {
+                background: linear-gradient(45deg, #ff6a00, #d46a6a);
+            }
+            100% {
+                background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            height: 100vh;
+            margin: 0;
+            animation: gradientAnimation 15s ease infinite; /* Запуск анимации */
+            background-size: 400% 400%; /* Для плавных переходов между цветами */
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #FFD700;
+        }
+
+        #countdown {
+            font-size: 50px;
+            color: #FF6347;
+            margin-top: 20px;
+        }
+
+        #message {
+            font-size: 30px;
+            color: #98FB98;
+            margin-top: 20px;
+        }
+
+        .count {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Отсчет до Нового Года 2025!</h1>
+    <div id="countdown">
+        <!-- Здесь будет отображаться отсчет -->
+    </div>
+    <div id="message"></div>
+
+    <script>
+        // Устанавливаем дату для Нового года 2025
+        const newYearDate = new Date("Jan 1, 2025 00:00:00").getTime();
+
+        // Обновляем отсчет каждую секунду
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = newYearDate - now;
+
+            // Вычисляем количество дней, часов, минут и секунд
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Обновляем блок с отсчетом
+            document.getElementById("countdown").innerHTML = 
+                "<span class='count'>" + days + "</span> дней " +
+                "<span class='count'>" + hours + "</span> часов " +
+                "<span class='count'>" + minutes + "</span> минут " +
+                "<span class='count'>" + seconds + "</span> секунд";
+
+            // Когда наступает Новый год
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval); // Останавливаем отсчет
+                document.getElementById("countdown").innerHTML = "С Новым Годом 2025!";
+                document.getElementById("message").innerHTML = "Пусть 2025 год принесет вам счастье, успех и исполнение желаний!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
